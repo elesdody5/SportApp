@@ -135,14 +135,3 @@ class Network{
 
 
 
-
-enum requestTypes:Int{
-    
-    case SPORT=1
-    case LEAGUES=2
-    case LEAGUE=3
-    case TEAM=4
-    case RESULTS=5
-    
-    
-}
