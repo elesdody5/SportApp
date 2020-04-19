@@ -8,8 +8,14 @@
 
 import Foundation
 protocol HomeViewProtcol {
-    
+    func indicator(Status:Bool)
+    func updateUI()
+    func noMoviesDisplay(Status:Bool)
+    func gotoSportLeagues(sport:String)
 }
 protocol HomePresenterProtcol {
+    
+    var SportsList:Array<Sport> { get set }
+    func getSportsList()
     
 }

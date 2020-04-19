@@ -30,6 +30,10 @@
 		429E2CCC244A2FF900CBB7E3 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429E2CCB244A2FF900CBB7E3 /* Network.swift */; };
 		429E2CCE244A300900CBB7E3 /* LocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429E2CCD244A300900CBB7E3 /* LocalData.swift */; };
 		AB9AA7B796C00D82C14942ED /* Pods_SportApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4946FBBF4134C40F7D70E8DC /* Pods_SportApp.framework */; };
+		BF3874AA244B2F1000313CBC /* WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BF3874A9244B2F1000313CBC /* WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg */; };
+		BF3874AC244B2F8E00313CBC /* image7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF3874AB244B2F8E00313CBC /* image7.jpg */; };
+		BF3874B2244B366B00313CBC /* CustomCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3874B1244B366B00313CBC /* CustomCell1.swift */; };
+		BF3874B6244C86A400313CBC /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3874B5244C86A400313CBC /* colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,10 @@
 		429E2CCD244A300900CBB7E3 /* LocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalData.swift; sourceTree = "<group>"; };
 		4946FBBF4134C40F7D70E8DC /* Pods_SportApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SportApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		838341358E1E1ABD9A14700B /* Pods-SportApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportApp.release.xcconfig"; path = "Target Support Files/Pods-SportApp/Pods-SportApp.release.xcconfig"; sourceTree = "<group>"; };
+		BF3874A9244B2F1000313CBC /* WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg"; path = "../../../../../../Downloads/WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg"; sourceTree = "<group>"; };
+		BF3874AB244B2F8E00313CBC /* image7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image7.jpg; sourceTree = "<group>"; };
+		BF3874B1244B366B00313CBC /* CustomCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell1.swift; sourceTree = "<group>"; };
+		BF3874B5244C86A400313CBC /* colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		C8C19F539B9DE06630C43806 /* Pods-SportApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SportApp.debug.xcconfig"; path = "Target Support Files/Pods-SportApp/Pods-SportApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +103,7 @@
 		429E2C8E244A194E00CBB7E3 /* SportApp */ = {
 			isa = PBXGroup;
 			children = (
+				BF3874B5244C86A400313CBC /* colors.swift */,
 				429E2CC4244A209C00CBB7E3 /* TeamDetails */,
 				429E2CBD244A1F9C00CBB7E3 /* LeagueDetails */,
 				429E2CBC244A1F8700CBB7E3 /* Network */,
@@ -133,9 +142,12 @@
 		429E2CA6244A1A5100CBB7E3 /* Sports */ = {
 			isa = PBXGroup;
 			children = (
+				BF3874AB244B2F8E00313CBC /* image7.jpg */,
+				BF3874A9244B2F1000313CBC /* WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg */,
 				429E2C91244A194E00CBB7E3 /* HomeViewController.swift */,
 				429E2CA9244A1ABA00CBB7E3 /* HomeContract.swift */,
 				429E2CAB244A1ADC00CBB7E3 /* HomePresenter.swift */,
+				BF3874B1244B366B00313CBC /* CustomCell1.swift */,
 			);
 			path = Sports;
 			sourceTree = "<group>";
@@ -264,8 +276,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				429E2C9D244A195100CBB7E3 /* LaunchScreen.storyboard in Resources */,
+				BF3874AC244B2F8E00313CBC /* image7.jpg in Resources */,
 				429E2C9A244A195100CBB7E3 /* Assets.xcassets in Resources */,
 				429E2C95244A194E00CBB7E3 /* Main.storyboard in Resources */,
+				BF3874AA244B2F1000313CBC /* WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +336,7 @@
 				429E2CC1244A1FD800CBB7E3 /* LeagueDetailsContract.swift in Sources */,
 				429E2CAE244A1B8600CBB7E3 /* FavouriteContract.swift in Sources */,
 				429E2C92244A194E00CBB7E3 /* HomeViewController.swift in Sources */,
+				BF3874B2244B366B00313CBC /* CustomCell1.swift in Sources */,
 				429E2CAA244A1ABA00CBB7E3 /* HomeContract.swift in Sources */,
 				429E2CBF244A1FBF00CBB7E3 /* LeagueDetailsViewController.swift in Sources */,
 				429E2CCA244A20E100CBB7E3 /* TeamDetailsPresenter.swift in Sources */,
@@ -333,6 +348,7 @@
 				429E2C98244A194E00CBB7E3 /* SportApp.xcdatamodeld in Sources */,
 				429E2CB8244A1EE900CBB7E3 /* LeaguesContract.swift in Sources */,
 				429E2CCE244A300900CBB7E3 /* LocalData.swift in Sources */,
+				BF3874B6244C86A400313CBC /* colors.swift in Sources */,
 				429E2CCC244A2FF900CBB7E3 /* Network.swift in Sources */,
 				429E2CC6244A20B200CBB7E3 /* TeamDetailsViewController.swift in Sources */,
 				429E2CB6244A1ED600CBB7E3 /* LeaguesViewController.swift in Sources */,
