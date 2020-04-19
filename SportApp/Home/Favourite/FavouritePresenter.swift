@@ -7,6 +7,23 @@
 //
 
 import Foundation
+import CoreData
 class FaouritePresenter: FavouritePresenterProtocol {
+    private weak var view: FavouriteViewProtocol!
+    private var coreDataService:CoreDataService?
+    init(view: FavouriteViewProtocol,mangedConetxt:NSManagedObjectContext) {
+        self.view = view
+        coreDataService = CoreDataService(mangedConetxt: mangedConetxt)
+        
+    }
+    func getFavouriteLeagues() {
+      let leagues =  coreDataService?.fetchLeagueList()
+        view.displayList(leagues: leagues!)
+    }
+    
+    func deleteLeague(id: Int) {
+        coreDataService?.deletLeague(id: id)
+    }
+    
     
 }
