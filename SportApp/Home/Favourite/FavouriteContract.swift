@@ -7,9 +7,10 @@
 //
 
 import Foundation
-protocol FavouriteViewProtocol {
-    
+protocol FavouriteViewProtocol:AnyObject {
+    func displayList(leagues:Array<League>)
 }
-protocol FavouritePresenterProtocol {
-    
+protocol FavouritePresenterProtocol:AnyObject {
+    func getFavouriteLeagues()
+    func deleteLeague(id:Int)
 }
