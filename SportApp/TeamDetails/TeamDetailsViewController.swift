@@ -26,5 +26,27 @@ class TeamDetailsViewController: UIViewController ,TeamDetailsViewProtocol{
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBOutlet weak var TeamLogo: UIImageView!
+    
+    
+    @IBOutlet weak var teamName: UILabel!
+    
+    @IBOutlet weak var LeagueName: UILabel!
+    
+    @IBOutlet weak var nextEvent: UILabel!
+  
+    @IBOutlet weak var headCoachpicture: UIImageView!
+    
+    @IBOutlet weak var headCoachName: UILabel!
+    
+    @IBOutlet weak var PlayersCollectionView: UICollectionView!
+    
+    @IBOutlet weak var EventsTableView: UITableView!
 }
+
+//eventCell Identifier = Event
+//player cell Identifier= Player
+//storyboard IDs:
+//TeamView
+//LeagueDetailView
+//LeaguesView

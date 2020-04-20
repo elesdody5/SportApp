@@ -39,13 +39,15 @@ class Network{
               
           do{
               let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
+            
+             if json != nil {
             let dicts:Array<Dictionary<String,Any>> = json["sports"]!
             
             for i in 0...dicts.count-1 {
                   var dict = dicts[i]
                   self.sportsResult.append(Sport(sportName: dict["strSport"]! as! String, sportsImgPath:dict["strSportThumb"]! as! String))
                  print("sports are: \(dict["strSport"]! as! String)")
-              }
+                }}
               
               DispatchQueue.main.async {
                 callBack(self.sportsResult)
