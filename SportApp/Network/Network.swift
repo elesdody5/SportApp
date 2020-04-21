@@ -21,7 +21,8 @@ class Network{
     let LeagueDetailsURL : String="https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id="
     let teamsURL : String="https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id="
     let teamDetailsurl:String="https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id="
-   
+    let teamEventUrl:String = "https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id="
+
     
     var sportsResult=[Sport]()
     var leaguesResult=[Any]()
@@ -118,13 +119,57 @@ class Network{
                      self.teamsResult.append(0)
                   
                  }
-                 callBack(self.teamsResult)
                  DispatchQueue.main.async {
+                    callBack(self.teamsResult)
                  }
              }catch{
              }
              }).resume()
              }
+    func getTeamDetails(id:String,loadTeam:@escaping (_ team:Team)->Void) {
+        let url=URL(string: teamDetailsurl+id)
+        let request  = URLRequest(url: url!)
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let task = session.dataTask(with: request){
+            (data,response,error) in
+            do{
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Dictionary<String,Any>
+                let teams = json["teams"] as!Array<Dictionary<String,Any>>
+                let jsonTeam = teams[0]
+                DispatchQueue.main.async {
+                    loadTeam(Team(id: id, name: jsonTeam["strTeam"] as! String, league: jsonTeam["strLeague"] as! String, manager: jsonTeam["strManager"] as! String, logoUrl: jsonTeam["strTeamBadge"] as! String))
+                }
+            }catch{
+                print(error)
+            }
+        }.resume()
+    }
+    func getTeamEvents(teamId:String,loadTeamEvents:@escaping (_ events:Array<Event>)->Void) {
+        let url=URL(string: teamEventUrl+teamId)
+        let request  = URLRequest(url: url!)
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let task = session.dataTask(with: request){
+            (data,response,error) in
+            do{
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Dictionary<String,Any>
+                let jsonEvents = json["events"] as!Array<Dictionary<String,Any>>
+                var events=Array<Event>()
+                for jsonEvent in jsonEvents{
+                    var homeScore = jsonEvent["intHomeScore"]as?Int
+                    
+                    var awayScore = jsonEvent["intawayScore"]as?Int
+                    
+                    events.append(Event(id: jsonEvent["idEvent"]as!String, name: jsonEvent["strEvent"] as! String, homeTeam: jsonEvent["strHomeTeam"] as! String, awayTeam: jsonEvent["strAwayTeam"]as! String , homeScore: homeScore ?? 0, awayScore: awayScore ?? 0))
+                }
+                DispatchQueue.main.async {
+                    loadTeamEvents(events)
+                }
+            }catch{
+                print(error)
+            }
+            }.resume()
+    }
+    
 
 }
 

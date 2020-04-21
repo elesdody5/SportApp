@@ -3,10 +3,12 @@
     <entity name="LeagueEntity" representedClassName="LeagueEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="leagueAlternate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sport" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="youTubeUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="LeagueEntity" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="LeagueEntity" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

@@ -7,16 +7,45 @@
 //
 
 import UIKit
-
-class TeamDetailsViewController: UIViewController ,TeamDetailsViewProtocol{
-
+import Kingfisher
+class TeamDetailsViewController: UIViewController ,TeamDetailsViewProtocol,UITableViewDelegate,UITableViewDataSource{
+    
+    
+    
+    
+   
+    var id:String? = "133604"
+    var presenter:TeamDetailsPresenterProtocol?
+    var events:Array<Event> = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        EventsTableView.delegate = self
+        EventsTableView.dataSource = self
         // Do any additional setup after loading the view.
+        presenter = TeamDeatailsPresenter(view: self)
+        presenter?.loadTeamDetails(id: id ?? "")
+        
     }
     
-
+ 
+    // MARK: - Table view data source
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 2
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return events.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:TeamEventCell = tableView.dequeueReusableCell(withIdentifier: "Event", for: indexPath) as! TeamEventCell
+        let event = events[indexPath.row]
+        cell.team1Name.text = event.homeTeam
+        cell.team2Name.text = event.awayTeam
+        cell.team1Score.text = String(event.homeScore)
+        cell.team2Score.text = String(event.awayScore)
+        return cell
+    }
     /*
     // MARK: - Navigation
 
@@ -26,6 +55,19 @@ class TeamDetailsViewController: UIViewController ,TeamDetailsViewProtocol{
         // Pass the selected object to the new view controller.
     }
     */
+    func displayTeamDetails(team: Team) {
+        teamName.text = team.name
+        let url = URL(string: team.logoUrl)
+        TeamLogo.kf.setImage(with: url)
+        LeagueName.text = team.league
+        headCoachName.text = team.manager
+    }
+    
+    func displayTeamEvents(events: Array<Event>) {
+        nextEvent.text = events[0].name
+        self.events = events
+        EventsTableView.reloadData()
+    }
     @IBOutlet weak var TeamLogo: UIImageView!
     
     

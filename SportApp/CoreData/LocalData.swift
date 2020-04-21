@@ -21,7 +21,7 @@ init(mangedConetxt:NSManagedObjectContext) {
               let result =   try (mangedConetxt?.fetch(fetchRequest))!
             var leagues = Array<League>()
             for leagueEntity in result {
-                leagues.append(League(id: leagueEntity.value(forKey: "id") as! Int, name: leagueEntity.value(forKey: "name") as! String, sport: leagueEntity.value(forKey: "sport") as! String, leagueAlternate: leagueEntity.value(forKey: "leagueAlternate") as! String))
+                leagues.append(League(id: leagueEntity.value(forKey: "id") as! Int, name: leagueEntity.value(forKey: "name") as! String, sport: leagueEntity.value(forKey: "sport") as! String, leagueAlternate: leagueEntity.value(forKey: "leagueAlternate") as! String,logoUrl: leagueEntity.value(forKey: "logoUrl") as! String,youTubeUrl: leagueEntity.value(forKey: "youTubeUrl") as! String))
             }
             return leagues
         }
@@ -51,6 +51,9 @@ func insert(league:League)->Bool{
     leagueEntity.setValue(league.name, forKey: "name")
     leagueEntity.setValue(league.sport, forKey: "sport")
     leagueEntity.setValue(league.leagueAlternate, forKey: "leagueAlternate")
+    leagueEntity.setValue(league.youTubeUrl.replacingOccurrences(of:"/user\\/", with: " "), forKey: "youTubeUrl")
+    leagueEntity.setValue(league.logoUrl, forKey: "logoUrl")
+
 
 
     do{

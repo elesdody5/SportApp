@@ -12,4 +12,6 @@ struct League {
     var name:String
     var sport:String
     var leagueAlternate:String
+    var logoUrl:String
+    var youTubeUrl:String
 }
