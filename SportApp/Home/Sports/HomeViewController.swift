@@ -25,7 +25,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     let  presenter:HomePresenter = HomePresenter(handler: Network.getInstance())
-    var indicator = UIActivityIndicatorView(style:.large)
+    var indicator = UIActivityIndicatorView(style:.whiteLarge)
     func updateUI() {
          
         self.indicator(Status: false)

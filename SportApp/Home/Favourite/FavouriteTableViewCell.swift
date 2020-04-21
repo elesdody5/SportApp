@@ -13,6 +13,7 @@ class FavouriteTableViewCell: UITableViewCell {
     @IBOutlet weak var watchLeage: UIButton!
     @IBOutlet weak var leageImage: UIImageView!
     @IBOutlet weak var leagueName: UILabel!
+    var youTubeLink:String?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

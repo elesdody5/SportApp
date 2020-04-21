@@ -7,9 +7,10 @@
 //
 
 import Foundation
-protocol TeamDetailsPresenterProtocol {
-    
+protocol TeamDetailsPresenterProtocol:AnyObject {
+    func loadTeamDetails(id:String)
 }
-protocol TeamDetailsViewProtocol {
-    
+protocol TeamDetailsViewProtocol :AnyObject{
+    func displayTeamDetails(team:Team)
+    func displayTeamEvents(events:Array<Event>) 
 }
