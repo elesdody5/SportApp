@@ -10,10 +10,15 @@ import UIKit
 import CoreData
 class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
    
+    @IBOutlet weak var NoFavoriteLeaguesView: UIImageView!
+    @IBOutlet weak var NoConnectionView: UIView!
     var leagues = Array<League>()
     var presenter :FavouritePresenterProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
+        NoConnectionView.isHidden=true
+       // NoFavoriteLeaguesView.isHidden=true
+        
         let appDeleate:AppDelegate = (UIApplication.shared.delegate as!AppDelegate)
         let mangedConetxt:NSManagedObjectContext = appDeleate.persistentContainer.viewContext
         presenter = FaouritePresenter(view: self, mangedConetxt: mangedConetxt)
@@ -90,6 +95,10 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
         // Pass the selected object to the new view controller.
     }
     */
+    @IBAction func WatchAction(_ sender: Any) {
+    }
+    
+    
     func displayList(leagues: Array<League>) {
         self.leagues = leagues
         tableView.reloadData()

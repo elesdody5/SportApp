@@ -8,8 +8,14 @@
 
 import Foundation
 protocol LeaguesPresenterProtocol {
-    
+    func getLeagues()
+     var Leagues:Array<League> { get set }
 }
 protocol LeaguesViewProtocol {
+   
+    func updateLeagues()
+    func indicator(Status:Bool)
+
+     func gotoSportLeagues(sport:String)
     
 }

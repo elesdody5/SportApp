@@ -15,3 +15,16 @@ struct League {
     var logoUrl:String
     var youTubeUrl:String
 }
+
+struct Results {
+    var id :String
+    var name:String
+    var homeTeam:String
+    var awayTeam:String
+    var homeScore:Int
+    var awayScore:Int
+    var homeTeamID:Int
+    var awayTeamID:Int
+    
+}
+

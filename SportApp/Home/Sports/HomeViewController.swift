@@ -11,6 +11,9 @@ import Kingfisher
 
 @available(iOS 13.0, *)
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout ,HomeViewProtcol{
+    @IBOutlet weak var NoConnection: UICollectionView!
+    var selectedSport:String?
+    
     func gotoSportLeagues(sport:String) {
         // 
     }
@@ -20,7 +23,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         else { self.indicator.stopAnimating()}
     }
     
-    func noMoviesDisplay(Status: Bool) {
+    func nothingToDisplay(Status: Bool) {
         /////
     }
     
@@ -67,14 +70,19 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let leagueView: LeaguesViewController = storyboard?.instantiateViewController(withIdentifier: "LeaguesView") as! LeaguesViewController
+        selectedSport=presenter.SportsList[indexPath.row].sportName
+        leagueView.sportname=selectedSport
+        navigationController?.pushViewController(leagueView, animated: true)
         
-        gotoSportLeagues(sport: presenter.SportsList[indexPath.row].sportName)
+        
         
     }
     
 ///////////////////////////////////////////////////////////////////////////////
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(true)
+        NoConnection.isHidden=true
             indicator.center = self.view.center
             self.view.addSubview(indicator)
             SportsCollectionView.delegate=self
@@ -83,7 +91,15 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
         presenter.getSportsList()
         // Do any additional setup after loading the view.
     }
-
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier=="toLeagues"{
+//           var leaguesView:LeaguesViewController=segue.destination as! LeaguesViewController
+//                      print("sport segue\(selectedSport)")
+//                      leaguesView.sportname=selectedSport
+//
+//        }
+//    }
 
     @IBOutlet weak var SportsCollectionView: UICollectionView!
 }

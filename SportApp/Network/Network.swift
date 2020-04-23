@@ -17,17 +17,21 @@ class Network{
     }
     
     let sportsURL  = URL(string: "https://www.thesportsdb.com/api/v1/json/1/all_sports.php")
-    let leaguesURL: String="https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=England&s=Soccer"//?
+    let leaguesURL: String="https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s="//?
     let LeagueDetailsURL : String="https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id="
     let teamsURL : String="https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id="
     let teamDetailsurl:String="https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id="
     let teamEventUrl:String = "https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id="
-
+    let LeaguesEventURL:String="https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id="
     
     var sportsResult=[Sport]()
-    var leaguesResult=[Any]()
+    var leaguesResult=[League]()
+    var leaguesTeams=[Team]()
+    var leagueEvents=[Event]()
+    var leagueResults=[Event]()
+    
     var eventsResult=[Any]()
-    var results=[Any]()
+
     var teamsResult=[Any]()
     
     func getSports(callBack:@escaping ([Sport]) -> Void){
@@ -52,13 +56,14 @@ class Network{
               
               DispatchQueue.main.async {
                 callBack(self.sportsResult)
+                self.sportsResult.removeAll()
               }
           }catch{
           }
           }).resume()
           }
 
-    func getLeagues(sportname:String,callBack:@escaping ([Any]) -> Void){
+    func getLeagues(sportname:String,callBack:@escaping ([League]) -> Void){
             let url=URL(string: leaguesURL+sportname)
             let request = URLRequest(url: sportsURL!)
             
@@ -67,21 +72,29 @@ class Network{
             let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
                 
             do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Array<Dictionary<String,Any>>
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Dictionary<String,Array<Dictionary<String,Any>>>
+               if json != nil {
+                let resLeagues:Array<Dictionary<String,Any>> = json["countrys"]!
+               
                 for i in 0...json.count-1 {
-                    var dict = json[i]
-                    self.leaguesResult.append(0)
-                 
+                    var dict = resLeagues[i]
+                    var id:String = dict["idLeague"] as! String
+                    self.leaguesResult.append(League(id: Int(id)!, name: dict["strLeague"] as! String, sport: dict["strSport"] as! String, leagueAlternate: dict["strLeagueAlternate"] as! String, logoUrl: dict["strBadge"] as! String, youTubeUrl: dict["strYoutube"] as! String))
+                    print(self.leaguesResult.count)
+
                 }
-                callBack(self.leaguesResult)
+                }
                 DispatchQueue.main.async {
+                
+                 callBack(self.leaguesResult)
+                    self.leaguesResult.removeAll()
                 }
             }catch{
             }
             }).resume()
             }
     
-    func getLeagueDetails(leagueID:Int,callBack:@escaping ([Any]) -> Void){
+    func getLeagueDetails(leagueID:Int,callBack:@escaping (League) -> Void){
         let url=URL(string: LeagueDetailsURL+String(leagueID))
             let request = URLRequest(url: sportsURL!)
             
@@ -90,21 +103,24 @@ class Network{
             let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
                 
             do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Array<Dictionary<String,Any>>
-                for i in 0...json.count-1 {
-                    var dict = json[i]
-                    self.sportsResult.append(Sport(sportName: dict["sport"]! as! String, sportsImgPath:dict["thumbnail"]! as! String))
-                 
-                }
-                callBack(self.sportsResult)////change
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Dictionary<String,Dictionary<String,Any>>
+                
+                let loaded:Dictionary<String,Any> = json["leagues"]!
+                    
+                let loadedLeague:League = League(id:loaded["idLeague"] as! Int,name:loaded["strLeague"] as! String,sport:loaded["strSport"] as! String,leagueAlternate:loaded["strLeagueAlternate"] as! String,logoUrl:loaded["strLogo"] as! String,youTubeUrl:loaded["strYoutube"] as! String)
+            
+                
+               ////change
                 DispatchQueue.main.async {
+                 callBack(loadedLeague)
+                  
                 }
             }catch{
             }
             }).resume()
             }
   
-    func getLeagueTeams(leagueId:Int,callBack:@escaping ([Any]) -> Void){
+    func getLeagueTeams(leagueId:Int,callBack:@escaping ([Team]) -> Void){
         let url=URL(string: teamsURL+"\(leagueId)")
              let request = URLRequest(url: sportsURL!)
              
@@ -113,19 +129,26 @@ class Network{
              let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
                  
              do{
-                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Array<Dictionary<String,Any>>
-                 for i in 0...json.count-1 {
-                     var dict = json[i]
-                     self.teamsResult.append(0)
-                  
-                 }
+                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
+                            
+                    if json != nil {
+                      let dicts:Array<Dictionary<String,Any>> = json["teams"]!
+                        print("teaaaaammmmsssssssss\(dicts.count)")
+                    for i in 0...dicts.count-1 {
+                        var dict = dicts[i]
+                        self.leaguesTeams.append(Team(id: dict["idTeam"] as! String , name: dict["strTeam"] as! String, league: dict["strLeague"] as! String , manager: dict["strManager"] as! String, logoUrl: dict["strTeamBadge"]! as! String ))
+                                }}
                  DispatchQueue.main.async {
-                    callBack(self.teamsResult)
+                    callBack(self.leaguesTeams)
+                    self.leaguesTeams.removeAll()
                  }
              }catch{
              }
              }).resume()
              }
+    
+    
+    
     func getTeamDetails(id:String,loadTeam:@escaping (_ team:Team)->Void) {
         let url=URL(string: teamDetailsurl+id)
         let request  = URLRequest(url: url!)
@@ -169,6 +192,77 @@ class Network{
             }
             }.resume()
     }
+    
+    
+    func getLeagueEvents(leagueid:String, callBack:@escaping ([Event])->Void) {
+      
+        let url=URL(string: LeaguesEventURL + "\(leagueid)")
+        let request = URLRequest(url: sportsURL!)
+        
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+         
+        let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
+            
+        do{
+            let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
+                       
+               if json != nil {
+                 let dicts:Array<Dictionary<String,Any>> = json["events"]!
+                       
+               for i in 0...dicts.count-1 {
+                   var dict = dicts[i]
+                 var score1:String?
+                 var score2:String?
+                if let score:String = dict["intHomeScore"] as! String,let score3:String = dict["intAwayScore"] as! String{
+                  score1 = dict["intHomeScore"] as! String ?? " "
+                   score2 = dict["intAwayScore"] as! String ?? " "}
+                self.leagueEvents.append(Event(id: dict["idEvent"] as! String, name: dict["strEvent"] as! String, homeTeam: dict["strHomeTeam"] as! String, awayTeam: dict["strAwayTeam"] as! String, homeScore:Int((score1!)) ?? 0, awayScore:Int(score2!) ?? 0 ))
+                           }}
+            DispatchQueue.main.async {
+               callBack(self.leagueEvents)
+                self.leagueEvents.removeAll()
+            }
+        }catch{
+        }
+        }).resume()
+        
+    }
+    
+    
+    func getLeagueResults(leagueid:String, callBack:@escaping ([Event])->Void) {
+       
+         let url=URL(string: LeaguesEventURL + "\(leagueid)")
+         let request = URLRequest(url: sportsURL!)
+         
+         let session = URLSession(configuration: URLSessionConfiguration.default)
+          
+         let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
+             
+         do{
+            let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
+                        
+              if json != nil {
+                  let dicts:Array<Dictionary<String,Any>> = json["events"]!
+                        
+                for i in 0...dicts.count-1 {
+                    var dict = dicts[i]
+                  var score1:String?
+                  var score2:String?
+                if dict["intHomeScore"] != nil {
+                score1 = dict["intHomeScore"] as! String ?? " "
+                score2 = dict["intAwayScore"] as! String ?? " "}
+                self.leagueResults.append(Event(id: dict["idEvent"] as! String, name: dict["strEvent"] as! String, homeTeam: dict["strHomeTeam"] as! String, awayTeam: dict["strAwayTeam"] as! String, homeScore:Int(score1!) ?? 0, awayScore:Int(score2!)as! Int ?? 0))
+                            }}
+             DispatchQueue.main.async {
+                callBack(self.leagueResults)
+                self.leagueResults.removeAll()
+             
+            }}catch{
+         }
+         }).resume()
+         
+     }
+    
     
 
 }

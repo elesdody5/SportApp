@@ -33,7 +33,7 @@ class HomePresenter: HomePresenterProtcol {
         handler.getSports(callBack:{[weak self] Sports in
     
         if Sports.count > 0 {
-           
+            self?.HomeView?.indicator(Status: false)
             self?.SportsList=Sports
             self?.HomeView?.updateUI()
             

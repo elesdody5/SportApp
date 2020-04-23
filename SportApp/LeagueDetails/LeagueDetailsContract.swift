@@ -9,7 +9,15 @@
 import Foundation
 protocol LeagueDetailsViewProtocol {
     
+    func reloadEvents()
+    func reloadTeams()
+    func ReloadResuts()
+    func indicator(Status:Bool)
+    func gotoSTeamDetals(TeamId:String)
+    
 }
 protocol LeagueDetailsPresenterProtocol {
-    
+    func getResults()
+    func getTeams()
+    func getEvents()
 }
