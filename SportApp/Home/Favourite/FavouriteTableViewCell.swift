@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 class FavouriteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var watchLeage: UIButton!
@@ -24,5 +23,8 @@ class FavouriteTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func WatchAction(_ sender: Any) {
+        let url = URL(string: youTubeLink!)!
+        UIApplication.shared.openURL(url )
+    }
 }

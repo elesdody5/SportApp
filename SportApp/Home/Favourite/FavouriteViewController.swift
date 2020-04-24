@@ -25,7 +25,10 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
         presenter?.getFavouriteLeagues()
         
     }
-
+    func showEmptyState(){
+        self.tableView.isHidden = true
+        NoConnectionView.isHidden = true
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +49,7 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
         cell.leageImage.kf.setImage(with: url)
         cell.leagueName.text = league.name
         cell.youTubeLink = league.youTubeUrl
-
+        print(league.youTubeUrl)
         return cell
     }
  
@@ -86,21 +89,31 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let league:LeagueDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailView") as! LeagueDetailsViewController
+        if (presenter?.checkInternet())! {
+        league.league = leagues[indexPath.row]
+        self.navigationController?.pushViewController(league, animated: true)
+        }
+        else {
+            showError()
+        }
     }
-    */
-    @IBAction func WatchAction(_ sender: Any) {
-    }
+    
     
     
     func displayList(leagues: Array<League>) {
+        self.tableView.isHidden = false
+        NoConnectionView.isHidden = true
         self.leagues = leagues
         tableView.reloadData()
+    }
+    func showError(){
+        let alert :UIAlertController=UIAlertController(title: "No Internet Connection", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Done", style: .cancel, handler: nil))
+        self.present(alert, animated:  true,completion: nil)
+        
     }
 }

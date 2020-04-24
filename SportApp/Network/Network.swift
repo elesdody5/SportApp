@@ -153,7 +153,7 @@ class Network{
         let url=URL(string: teamDetailsurl+id)
         let request  = URLRequest(url: url!)
         let session = URLSession(configuration: URLSessionConfiguration.default)
-        let task = session.dataTask(with: request){
+        _ = session.dataTask(with: request){
             (data,response,error) in
             do{
                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Dictionary<String,Any>
