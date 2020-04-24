@@ -25,21 +25,28 @@ class HomePresenter: HomePresenterProtcol {
     init(handler : Network) {
            self.handler = handler
        }
-    
+    func isReachable()-> Bool{
+        return  Reachability.isConnectedToNetwork()
+    }
     
     func getSportsList() {
+        
+        if  isReachable(){
+        
+            HomeView?.indicator(Status: true)
+            handler.getSports(callBack:{[weak self] Sports in
     
-        HomeView?.indicator(Status: true)
-        handler.getSports(callBack:{[weak self] Sports in
-    
-        if Sports.count > 0 {
-            self?.HomeView?.indicator(Status: false)
-            self?.SportsList=Sports
-            self?.HomeView?.updateUI()
+            if Sports.count > 0 {
+              self?.HomeView?.indicator(Status: false)
+                  self?.SportsList=Sports
+                  self?.HomeView?.updateUI()
             
             }
+            else{ self?.HomeView?.updateUI()}
             
     })
+        }
+        
     }
     
 }

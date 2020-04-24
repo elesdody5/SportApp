@@ -11,12 +11,26 @@ import Kingfisher
 
 @available(iOS 13.0, *)
 class HomeViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout ,HomeViewProtcol{
-    @IBOutlet weak var NoConnection: UICollectionView!
+  
     var selectedSport:String?
     
     func gotoSportLeagues(sport:String) {
         // 
     }
+    func UpdateScreen(){
+        if presenter.isReachable(){
+            
+        SportsCollectionView.reloadData()
+        NoConnection.isHidden=true
+        
+    }
+    else {
+        presenter.SportsList.removeAll()
+        NoConnection.isHidden=false
+        reloadInputViews()
+    }
+}
+
     
     func indicator(Status: Bool) {
         if Status {self.indicator.startAnimating()}
@@ -32,7 +46,10 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func updateUI() {
          
         self.indicator(Status: false)
-        
+        if presenter.SportsList.count <= 0{
+            NoConnection.isHidden=false
+        }
+        else{ NoConnection.isHidden=true}
         SportsCollectionView.reloadData()
     }
     
@@ -81,15 +98,17 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     
 ///////////////////////////////////////////////////////////////////////////////
     override func viewDidAppear(_ animated: Bool){
-        super.viewDidAppear(true)
-        NoConnection.isHidden=true
-            indicator.center = self.view.center
-            self.view.addSubview(indicator)
-            SportsCollectionView.delegate=self
-            SportsCollectionView.dataSource=self
-        presenter.attachView(view: self)
-        presenter.getSportsList()
-        // Do any additional setup after loading the view.
+      
+      super.viewDidAppear(true)
+      
+      NoConnection.isHidden=true
+      indicator.center = self.view.center
+      self.view.addSubview(indicator)
+      SportsCollectionView.delegate=self
+      SportsCollectionView.dataSource=self
+      presenter.attachView(view: self)
+      presenter.getSportsList()
+       
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,6 +120,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
 //        }
 //    }
 
+    @IBOutlet weak var NoConnection: UIImageView!
     @IBOutlet weak var SportsCollectionView: UICollectionView!
 }
 

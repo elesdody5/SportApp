@@ -35,13 +35,24 @@ class LeaguesViewController: UITableViewController,LeaguesViewProtocol {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-       
-          //  presenter?.getLeagues()
+        
+            updateLeagues()
+     
+         
     }
 
     func updateLeagues() {
-        print("UIUpdated")
-        tableView.reloadData()
+      if (presenter?.isreachable())!{
+                 NoConnectionView.isHidden=true
+                 tableView.reloadData()
+             } else{
+                 NoConnectionView.isHidden=false
+             }
+        
+           
+        
+       
+        
     }
     
      override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,13 +75,16 @@ class LeaguesViewController: UITableViewController,LeaguesViewProtocol {
       }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if (presenter?.isreachable())!{
         let leagueDetailsView: LeagueDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "LeagueDetailView") as! LeagueDetailsViewController
           
           selectedLeague=presenter?.Leagues[indexPath.row]
              leagueDetailsView.league=selectedLeague
              navigationController?.pushViewController(leagueDetailsView, animated: true)
-            
+        }
+        else{
+            NoConnectionView.isHidden=false
+        }
        
     }
 

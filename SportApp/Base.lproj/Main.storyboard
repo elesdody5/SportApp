@@ -77,17 +77,19 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iyy-0x-3zw" secondAttribute="trailing" constant="9" id="Iya-Wh-UpA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iyy-0x-3zw" secondAttribute="trailing" constant="9" id="JbB-vt-Zc6"/>
                             <constraint firstItem="Iyy-0x-3zw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="OFp-Ck-Hqa"/>
+                            <constraint firstItem="Iyy-0x-3zw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="Rld-1L-J6t"/>
                             <constraint firstItem="Iyy-0x-3zw" firstAttribute="top" secondItem="frX-uI-LhY" secondAttribute="bottom" constant="22" id="V7g-GY-uSx"/>
                             <constraint firstItem="Iyy-0x-3zw" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="atW-cA-zQA"/>
                             <constraint firstItem="YPz-PB-z98" firstAttribute="top" secondItem="frX-uI-LhY" secondAttribute="bottom" constant="-82" id="cD1-z7-JqA"/>
                             <constraint firstItem="Iyy-0x-3zw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="d2W-wX-6NX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iyy-0x-3zw" secondAttribute="trailing" constant="9" id="g9N-ge-OH4"/>
                             <constraint firstItem="YPz-PB-z98" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ju3-hc-WbG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ev4-X3-Zn9"/>
                     <connections>
-                        <outlet property="NoConnection" destination="Iyy-0x-3zw" id="PK6-Ra-0oK"/>
+                        <outlet property="NoConnection" destination="DFp-jg-LMj" id="fdo-2Q-F4y"/>
                         <outlet property="SportsCollectionView" destination="Iyy-0x-3zw" id="FQW-Of-nCM"/>
                     </connections>
                 </viewController>
@@ -402,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJy-vR-fUG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1950.7246376811595" y="789.50892857142856"/>
+            <point key="canvasLocation" x="4680" y="800"/>
         </scene>
         <!--Leagues-->
         <scene sceneID="gUa-cM-6gW">
@@ -493,7 +495,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4b-EH-gR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3795.652173913044" y="789.50892857142856"/>
+            <point key="canvasLocation" x="6400" y="800"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="ky5-lg-KWc">
@@ -809,13 +811,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYf-pb-eJP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2860.8695652173915" y="799.55357142857144"/>
+            <point key="canvasLocation" x="5590" y="800"/>
         </scene>
-        <!--Favorite-->
-        <scene sceneID="8Qg-cg-hkO">
+        <!--Favourite View Controller-->
+        <scene sceneID="c2P-SO-aeH">
             <objects>
-                <tableViewController id="fjS-8P-0PR" customClass="FavouriteViewController" customModule="SportApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="4hG-du-oD4">
+                <tableViewController id="YKT-xu-WjJ" customClass="FavouriteViewController" customModule="SportApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Yd8-06-fCI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -859,12 +861,12 @@
                             </constraints>
                         </view>
                         <imageView key="tableFooterView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhatsApp Image 2020-04-24 at 12.51.44 AM-2.jpeg" id="XSz-ci-Pe5">
-                            <rect key="frame" x="0.0" y="297.5" width="414" height="441"/>
+                            <rect key="frame" x="0.0" y="280" width="414" height="441"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="favouritecell" id="jG6-sA-esK" customClass="FavouriteTableViewCell" customModule="SportApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="175.5" width="414" height="104"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jG6-sA-esK" id="ZBq-nI-hBH">
                                     <rect key="frame" x="0.0" y="0.0" width="383" height="104"/>
@@ -886,7 +888,7 @@
                                                 <color key="titleColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                             </state>
                                             <connections>
-                                                <action selector="WatchAction:" destination="fjS-8P-0PR" eventType="touchUpInside" id="V5c-gK-pNi"/>
+                                                <action selector="WatchAction:" destination="jG6-sA-esK" eventType="touchUpInside" id="IBX-od-P2I"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIy-g9-9ig">
@@ -914,27 +916,26 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="leageImage" destination="sWa-fB-Ryr" id="pmP-O0-7MJ"/>
-                                    <outlet property="leagueName" destination="CIy-g9-9ig" id="vxU-Tn-ncE"/>
-                                    <outlet property="watchLeage" destination="Quh-O9-vWk" id="iNF-5w-DPf"/>
+                                    <outlet property="leageImage" destination="sWa-fB-Ryr" id="toy-VC-Ol3"/>
+                                    <outlet property="leagueName" destination="CIy-g9-9ig" id="FgI-Zj-04Z"/>
+                                    <outlet property="watchLeage" destination="Quh-O9-vWk" id="ZBc-6r-J7B"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="fjS-8P-0PR" id="sL5-Rk-wWu"/>
-                            <outlet property="delegate" destination="fjS-8P-0PR" id="rzF-pN-O7P"/>
+                            <outlet property="dataSource" destination="YKT-xu-WjJ" id="dBZ-jl-6B5"/>
+                            <outlet property="delegate" destination="YKT-xu-WjJ" id="IVv-Lq-5qj"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="pgT-rU-CWK"/>
-                    <navigationItem key="navigationItem" id="cz5-xO-Yy1"/>
+                    <navigationItem key="navigationItem" id="DYy-um-9L6"/>
                     <connections>
-                        <outlet property="NoConnectionView" destination="wh4-Bn-eNE" id="oAU-QD-O4M"/>
-                        <outlet property="NoFavoriteLeaguesView" destination="XSz-ci-Pe5" id="OVl-TH-UBH"/>
+                        <outlet property="NoConnectionView" destination="wh4-Bn-eNE" id="YdX-tb-oZI"/>
+                        <outlet property="NoFavoriteLeaguesView" destination="XSz-ci-Pe5" id="Uib-Ny-JpI"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eNw-Gc-3eb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PMI-Rh-Efs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6400.0000000000009" y="97.767857142857139"/>
+            <point key="canvasLocation" x="7310.1449275362329" y="97.767857142857139"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ox0-Wu-4qg">
@@ -949,7 +950,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="S6e-Ss-5vx" kind="relationship" relationship="viewControllers" id="PbT-N1-lY0"/>
-                        <segue destination="fjS-8P-0PR" kind="relationship" relationship="viewControllers" id="7sC-mf-Qny"/>
+                        <segue destination="3hd-Jk-FNA" kind="relationship" relationship="viewControllers" id="49f-nw-3IX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRr-0h-lwA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -983,6 +984,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBL-22-3xV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4679.7101449275369" y="97.767857142857139"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="HSZ-RD-haq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3hd-Jk-FNA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" catalog="system" id="o9F-r2-bSq"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sWR-SP-gy6">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.036681162820000002" green="0.26921399109999999" blue="0.16738704339999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YKT-xu-WjJ" kind="relationship" relationship="rootViewController" id="aLB-n9-4vs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SO5-3z-c7p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6400.0000000000009" y="97.767857142857139"/>
         </scene>
     </scenes>
     <resources>
