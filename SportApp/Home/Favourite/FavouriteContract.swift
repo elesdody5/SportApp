@@ -9,8 +9,10 @@
 import Foundation
 protocol FavouriteViewProtocol:AnyObject {
     func displayList(leagues:Array<League>)
+    func showEmptyState()
 }
 protocol FavouritePresenterProtocol:AnyObject {
     func getFavouriteLeagues()
     func deleteLeague(id:Int)
+    func checkInternet()->Bool
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+
 class FaouritePresenter: FavouritePresenterProtocol {
     private weak var view: FavouriteViewProtocol!
     private var coreDataService:CoreDataService?
@@ -17,13 +18,25 @@ class FaouritePresenter: FavouritePresenterProtocol {
         
     }
     func getFavouriteLeagues() {
-      let leagues =  coreDataService?.fetchLeagueList()
-        view.displayList(leagues: leagues!)
+        
+            let leagues =  coreDataService?.fetchLeagueList()
+            if leagues!.isEmpty {
+                view.showEmptyState()
+            }else{
+                view.displayList(leagues: leagues!)
+            }
+        
     }
     
     func deleteLeague(id: Int) {
         coreDataService?.deletLeague(id: id)
     }
-    
+    func checkInternet() -> Bool {
+        if Reachability.isConnectedToNetwork(){
+            return true
+        }else{
+            return false
+        }
+    }
     
 }
