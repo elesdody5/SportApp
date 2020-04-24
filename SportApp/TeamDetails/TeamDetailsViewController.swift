@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 class TeamDetailsViewController: UIViewController ,TeamDetailsViewProtocol,UITableViewDelegate,UITableViewDataSource{
     
+    @IBOutlet weak var NoConnectionView: UIView!
     
     
     
@@ -18,6 +19,7 @@ class TeamDetailsViewController: UIViewController ,TeamDetailsViewProtocol,UITab
     var presenter:TeamDetailsPresenterProtocol?
     var events:Array<Event> = []
     override func viewDidLoad() {
+        NoConnectionView.isHidden=true
         super.viewDidLoad()
         EventsTableView.delegate = self
         EventsTableView.dataSource = self

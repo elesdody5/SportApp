@@ -9,4 +9,37 @@
 import Foundation
 class LeaguePresenter: LeaguesPresenterProtocol {
     
+    weak private var LeaguesView: LeaguesViewController?
+    private let handler: Network?
+    let Sport:String
+    var Leagues = [League]()
+    
+    init(Handler: Network,sport:String) {
+        self.handler=Handler
+        self.Sport=sport
+    }
+    func attachView(view: LeaguesViewController) {
+        LeaguesView = view
+    }
+    func detachView() {
+          LeaguesView=nil
+    }
+    
+    func getLeagues() {
+          handler?.getLeagues(sportname:Sport,callBack:{[weak self] leagues in
+           
+              if leagues.count > 0 {
+                 
+                  self?.Leagues=leagues
+                  self?.LeaguesView!.updateLeagues()
+                  print("insideGetLeagues\(leagues.count)")
+
+                  }
+                  
+          })
+    }
+    
+  
+    
+    
 }

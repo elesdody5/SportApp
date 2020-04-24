@@ -10,7 +10,7 @@ import Foundation
 protocol HomeViewProtcol {
     func indicator(Status:Bool)
     func updateUI()
-    func noMoviesDisplay(Status:Bool)
+    func nothingToDisplay(Status:Bool)
     func gotoSportLeagues(sport:String)
 }
 protocol HomePresenterProtcol {
