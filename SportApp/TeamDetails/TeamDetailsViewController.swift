@@ -66,8 +66,13 @@ class TeamDetailsViewController: UIViewController ,TeamDetailsViewProtocol,UITab
     }
     
     func displayTeamEvents(events: Array<Event>) {
-        nextEvent.text = events[0].name
-        self.events = events
+        if events.count > 0{
+            nextEvent.text = events[0].name
+            self.events = events}
+        else{
+            nextEvent.text = "No Upcoming Events"
+
+        }
         EventsTableView.reloadData()
     }
     @IBOutlet weak var TeamLogo: UIImageView!

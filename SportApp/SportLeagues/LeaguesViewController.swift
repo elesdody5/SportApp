@@ -62,8 +62,12 @@ class LeaguesViewController: UITableViewController,LeaguesViewProtocol {
       override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let res:League=(presenter?.Leagues[indexPath.row])!
         let cell :LeaguesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell") as! LeaguesTableViewCell
-       
-        cell.leagueName.text=res.leagueAlternate
+        cell.youTubeLink = res.youTubeUrl
+        if res.leagueAlternate != ""{
+            cell.leagueName.text=res.leagueAlternate}
+        else{
+            cell.leagueName.text=res.name
+        }
         cell.leaguepic.kf.setImage(with:URL(string:res.logoUrl))
         
           return cell

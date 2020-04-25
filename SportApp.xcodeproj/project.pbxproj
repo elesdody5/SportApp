@@ -40,6 +40,7 @@
 		BF3874B6244C86A400313CBC /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3874B5244C86A400313CBC /* colors.swift */; };
 		BF3A66652452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BF3A66632452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM-2.jpeg */; };
 		BF3A66662452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BF3A66642452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM.jpeg */; };
+		BF3A66A72454908600BFDE16 /* WhatsApp Image 2020-04-25 at 5.32.38 PM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BF3A66A62454908600BFDE16 /* WhatsApp Image 2020-04-25 at 5.32.38 PM.jpeg */; };
 		BF3ACC0624505CEA007AB784 /* WhatsApp Image 2020-04-20 at 6.29.13 PM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BF3ACC0524505CE9007AB784 /* WhatsApp Image 2020-04-20 at 6.29.13 PM.jpeg */; };
 		BF3ACC0824505DAC007AB784 /* WhatsApp Image 2020-04-22 at 1.09.05 PM.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BF3ACC0724505DAC007AB784 /* WhatsApp Image 2020-04-22 at 1.09.05 PM.jpeg */; };
 		BF3ACC0A245061CD007AB784 /* resultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3ACC09245061CD007AB784 /* resultCell.swift */; };
@@ -93,6 +94,7 @@
 		BF3874B5244C86A400313CBC /* colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 		BF3A66632452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WhatsApp Image 2020-04-24 at 12.51.44 AM-2.jpeg"; sourceTree = "<group>"; };
 		BF3A66642452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WhatsApp Image 2020-04-24 at 12.51.44 AM.jpeg"; sourceTree = "<group>"; };
+		BF3A66A62454908600BFDE16 /* WhatsApp Image 2020-04-25 at 5.32.38 PM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WhatsApp Image 2020-04-25 at 5.32.38 PM.jpeg"; sourceTree = "<group>"; };
 		BF3ACC0524505CE9007AB784 /* WhatsApp Image 2020-04-20 at 6.29.13 PM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WhatsApp Image 2020-04-20 at 6.29.13 PM.jpeg"; sourceTree = "<group>"; };
 		BF3ACC0724505DAC007AB784 /* WhatsApp Image 2020-04-22 at 1.09.05 PM.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "WhatsApp Image 2020-04-22 at 1.09.05 PM.jpeg"; sourceTree = "<group>"; };
 		BF3ACC09245061CD007AB784 /* resultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resultCell.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		429E2C8E244A194E00CBB7E3 /* SportApp */ = {
 			isa = PBXGroup;
 			children = (
+				BF3A66A62454908600BFDE16 /* WhatsApp Image 2020-04-25 at 5.32.38 PM.jpeg */,
 				BF3A66632452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM-2.jpeg */,
 				BF3A66642452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM.jpeg */,
 				4234F7E5244F521200145B57 /* Entity */,
@@ -356,6 +359,7 @@
 				BF3D5664244F828100AB944F /* WhatsApp Image 2020-04-19 at 12.57.01 AM.jpeg in Resources */,
 				BF3A66652452540A00BFDE16 /* WhatsApp Image 2020-04-24 at 12.51.44 AM-2.jpeg in Resources */,
 				BF3ACC0824505DAC007AB784 /* WhatsApp Image 2020-04-22 at 1.09.05 PM.jpeg in Resources */,
+				BF3A66A72454908600BFDE16 /* WhatsApp Image 2020-04-25 at 5.32.38 PM.jpeg in Resources */,
 				BF3D5666244F90D700AB944F /* WhatsApp Image 2020-04-21 at 10.26.22 PM.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

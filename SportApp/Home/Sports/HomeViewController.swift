@@ -17,19 +17,7 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     func gotoSportLeagues(sport:String) {
         // 
     }
-    func UpdateScreen(){
-        if presenter.isReachable(){
-            
-        SportsCollectionView.reloadData()
-        NoConnection.isHidden=true
-        
-    }
-    else {
-        presenter.SportsList.removeAll()
-        NoConnection.isHidden=false
-        reloadInputViews()
-    }
-}
+
 
     
     func indicator(Status: Bool) {
@@ -42,15 +30,29 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
     let  presenter:HomePresenter = HomePresenter(handler: Network.getInstance())
-    var indicator = UIActivityIndicatorView(style:.whiteLarge)
+    var indicator = UIActivityIndicatorView(style:.large)
+    
     func updateUI() {
          
-        self.indicator(Status: false)
-        if presenter.SportsList.count <= 0{
-            NoConnection.isHidden=false
+      
+          if presenter.isReachable(){
+                 
+             SportsCollectionView.reloadData()
+             NoConnection.isHidden=true
+             
+            print(" online!!")
+         }
+         else {
+             indicator(Status: true)
+             presenter.SportsList.removeAll()
+             NoConnection.isHidden=false
+            SportsCollectionView.reloadData()
+            if presenter.SportsList.count > 0{
+            self.indicator(Status: false)
+            }
+           print(" offline!!")
         }
-        else{ NoConnection.isHidden=true}
-        SportsCollectionView.reloadData()
+          
     }
     
    ////////////////////////////////////////////////////////////
@@ -97,18 +99,26 @@ class HomeViewController: UIViewController,UICollectionViewDelegate,UICollection
     }
     
 ///////////////////////////////////////////////////////////////////////////////
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NoConnection.isHidden=true
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        SportsCollectionView.delegate=self
+        SportsCollectionView.dataSource=self
+        presenter.attachView(view: self)
+        presenter.getSportsList()
+        updateUI()
+        
+        
+    }
     override func viewDidAppear(_ animated: Bool){
       
       super.viewDidAppear(true)
-      
-      NoConnection.isHidden=true
-      indicator.center = self.view.center
-      self.view.addSubview(indicator)
-      SportsCollectionView.delegate=self
-      SportsCollectionView.dataSource=self
-      presenter.attachView(view: self)
+        indicator(Status: true)
       presenter.getSportsList()
-       
+      updateUI()
+     
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -68,6 +68,7 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
         else{
             let res:Event=(presenter?.Events[indexPath.row])!
                        let eventCell:EventCell=collectionView.dequeueReusableCell(withReuseIdentifier: "LeagueEventCell", for: indexPath) as!EventCell
+            
             eventCell.eventTeam1.text=res.awayTeam
             eventCell.EventTeam2.text=res.homeTeam
                    return eventCell
@@ -95,7 +96,7 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
                     
                     let teamsDetailsView: TeamDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "TeamView") as! TeamDetailsViewController
                           selectedTeam = presenter?.Teams[indexPath.row]
-                   teamsDetailsView.id = selectedTeam?.id
+                       teamsDetailsView.id = selectedTeam?.id
                     navigationController?.pushViewController(teamsDetailsView, animated: true)
                          
                     
