@@ -89,10 +89,10 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
            
                   if collectionView == teamsCollectionView {
                     
-                    let TeamsDetailsView: TeamDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "TeamView") as! TeamDetailsViewController
+                    let teamsDetailsView: TeamDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "TeamView") as! TeamDetailsViewController
                           selectedTeam = presenter?.Teams[indexPath.row]
-                   /// TeamsDetailsViewTeam.=selectedTeam
-                    navigationController?.pushViewController(TeamsDetailsView, animated: true)
+                   teamsDetailsView.id = selectedTeam?.id
+                    navigationController?.pushViewController(teamsDetailsView, animated: true)
                          
                     
                     
