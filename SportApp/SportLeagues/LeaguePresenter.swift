@@ -24,19 +24,25 @@ class LeaguePresenter: LeaguesPresenterProtocol {
     func detachView() {
           LeaguesView=nil
     }
+    func isreachable() ->Bool {
+        return Reachability.isConnectedToNetwork()
+    }
     
     func getLeagues() {
-          handler?.getLeagues(sportname:Sport,callBack:{[weak self] leagues in
+        if isreachable() { handler?.getLeagues(sportname:Sport,callBack:{[weak self] leagues in
            
-              if leagues.count > 0 {
+        if leagues.count > 0 {
                  
-                  self?.Leagues=leagues
-                  self?.LeaguesView!.updateLeagues()
+        self?.Leagues=leagues
+       
                   print("insideGetLeagues\(leagues.count)")
 
                   }
-                  
-          })
+                   self?.LeaguesView!.updateLeagues()
+        })
+            
+        }
+       LeaguesView!.updateLeagues()
     }
     
   

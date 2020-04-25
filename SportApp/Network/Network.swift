@@ -42,7 +42,7 @@ class Network{
            
           let task = session.dataTask(with: sportsURL!, completionHandler: { (data, response, error) in
               
-          do{
+            do{if data != nil {
               let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
             
              if json != nil {
@@ -58,7 +58,7 @@ class Network{
                 callBack(self.sportsResult)
                 self.sportsResult.removeAll()
               }
-          }catch{
+                }}catch{
           }
           }).resume()
           }
@@ -71,7 +71,7 @@ class Network{
              
             let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
                 
-            do{
+                do{ if data != nil{
                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Dictionary<String,Array<Dictionary<String,Any>>>
                if json != nil {
                 let resLeagues:Array<Dictionary<String,Any>> = json["countrys"]!
@@ -89,7 +89,7 @@ class Network{
                  callBack(self.leaguesResult)
                     self.leaguesResult.removeAll()
                 }
-            }catch{
+                }}catch{
             }
             }).resume()
             }
@@ -102,10 +102,10 @@ class Network{
              
             let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
                 
-            do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: []) as!Dictionary<String,Dictionary<String,Any>>
+                do{ if data == nil{
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,Dictionary<String,Any>>
                 
-                let loaded:Dictionary<String,Any> = json["leagues"]!
+                    let loaded:Dictionary<String,Any> = (json?["leagues"]!)!
                     
                 let loadedLeague:League = League(id:loaded["idLeague"] as! Int,name:loaded["strLeague"] as! String,sport:loaded["strSport"] as! String,leagueAlternate:loaded["strLeagueAlternate"] as! String,logoUrl:loaded["strLogo"] as! String,youTubeUrl:loaded["strYoutube"] as! String)
             
@@ -114,7 +114,7 @@ class Network{
                 DispatchQueue.main.async {
                  callBack(loadedLeague)
                   
-                }
+                    }}
             }catch{
             }
             }).resume()
@@ -129,10 +129,10 @@ class Network{
              let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
                  
              do{
-                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
+                 let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,Array<Dictionary<String,Any>>>
                             
-                    if json != nil {
-                      let dicts:Array<Dictionary<String,Any>> = json["teams"]!
+                    if let _=json {
+                        let dicts:Array<Dictionary<String,Any>> = (json?["teams"])!
                         print("teaaaaammmmsssssssss\(dicts.count)")
                     for i in 0...dicts.count-1 {
                         var dict = dicts[i]
@@ -204,20 +204,27 @@ class Network{
         let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
             
         do{
-            let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
+            let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,Array<Dictionary<String,Any>>>
                        
                if json != nil {
-                 let dicts:Array<Dictionary<String,Any>> = json["events"]!
+                let dicts:Array<Dictionary<String,Any>> = json!["events"]!
                        
                for i in 0...dicts.count-1 {
                    var dict = dicts[i]
                  var score1:String?
                  var score2:String?
-                if let score:String = dict["intHomeScore"] as! String,let score3:String = dict["intAwayScore"] as! String{
+                if let _:String = dict["intHomeScore"] as? String,let _:String = dict["intAwayScore"] as? String{
                   score1 = dict["intHomeScore"] as! String ?? " "
                    score2 = dict["intAwayScore"] as! String ?? " "}
-                self.leagueEvents.append(Event(id: dict["idEvent"] as! String, name: dict["strEvent"] as! String, homeTeam: dict["strHomeTeam"] as! String, awayTeam: dict["strAwayTeam"] as! String, homeScore:Int((score1!)) ?? 0, awayScore:Int(score2!) ?? 0 ))
-                           }}
+              
+                if let name=dict["strEvent"] as? String{
+            
+                self.leagueEvents.append(Event(
+                    id: dict["idEvent"] as? String ?? " "
+                    , name: dict["strEvent"] as? String ?? " "
+                    , homeTeam: dict["strHomeTeam"] as? String ?? " "
+                    , awayTeam: dict["strAwayTeam"] as? String ?? " ", homeScore:Int((score1 ?? " ")) ?? 0, awayScore:Int(score2 ?? " ") ?? 0 ))
+                }}}
             DispatchQueue.main.async {
                callBack(self.leagueEvents)
                 self.leagueEvents.removeAll()
@@ -237,21 +244,25 @@ class Network{
          let session = URLSession(configuration: URLSessionConfiguration.default)
           
          let task = session.dataTask(with: url!, completionHandler: { (data, response, error) in
-             
          do{
-            let json = try JSONSerialization.jsonObject(with: data!, options: []) as! Dictionary<String,Array<Dictionary<String,Any>>>
+            let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,Array<Dictionary<String,Any>>>
                         
               if json != nil {
-                  let dicts:Array<Dictionary<String,Any>> = json["events"]!
+                let dicts:Array<Dictionary<String,Any>> = json!["events"]!
                         
                 for i in 0...dicts.count-1 {
                     var dict = dicts[i]
-                  var score1:String?
-                  var score2:String?
-                if dict["intHomeScore"] != nil {
-                score1 = dict["intHomeScore"] as! String ?? " "
-                score2 = dict["intAwayScore"] as! String ?? " "}
-                self.leagueResults.append(Event(id: dict["idEvent"] as! String, name: dict["strEvent"] as! String, homeTeam: dict["strHomeTeam"] as! String, awayTeam: dict["strAwayTeam"] as! String, homeScore:Int(score1!) ?? 0, awayScore:Int(score2!)as! Int ?? 0))
+                    var score1:String?
+                    var score2:String?
+                    if let _:String = dict["intHomeScore"] as? String,let _:String = dict["intAwayScore"] as? String{
+                        score1 = dict["intHomeScore"] as! String ?? " "
+                        score2 = dict["intAwayScore"] as! String ?? " "}
+                        self.leagueResults.append(Event(
+                                           id: dict["idEvent"] as? String ?? " "
+                                           , name: dict["strEvent"] as? String ?? " "
+                                           , homeTeam: dict["strHomeTeam"] as? String ?? " "
+                            , awayTeam: dict["strAwayTeam"] as? String ?? " ", homeScore:Int((score1 ?? " ")) ?? 0, awayScore:Int(score2 ?? " ") ?? 0 ))
+                                  
                             }}
              DispatchQueue.main.async {
                 callBack(self.leagueResults)

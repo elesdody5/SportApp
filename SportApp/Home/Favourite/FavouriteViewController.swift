@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
+ 
    
     @IBOutlet weak var NoFavoriteLeaguesView: UIImageView!
     @IBOutlet weak var NoConnectionView: UIView!
@@ -25,10 +26,14 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
         presenter?.getFavouriteLeagues()
         
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        tableView.reloadData()
+    }
     func showEmptyState(){
         //self.tableView.isHidden = true
         NoFavoriteLeaguesView.isHidden = false
-        print("Empty")
+
     }
     // MARK: - Table view data source
 
@@ -107,6 +112,7 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
     func displayList(leagues: Array<League>) {
         //self.tableView.isHidden = false
         NoFavoriteLeaguesView.isHidden = true
+
         self.leagues = leagues
         tableView.reloadData()
     }
@@ -116,4 +122,5 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
         self.present(alert, animated:  true,completion: nil)
         
     }
+    
 }

@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var noConnectionView: UIView!
-//    let CoreData:CoreDataService = CoreDataService(mangedConetxt:  NSManagedObjectContext())
+   
+    var coredata:CoreDataService?
+    
+    
     func indicator(Status: Bool) {
         if Status {self.indicator.startAnimating()}
         else { self.indicator.stopAnimating()}
@@ -87,7 +91,7 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
        
        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
            
-                  if collectionView == teamsCollectionView {
+        if (presenter?.isReachable())!{if collectionView == teamsCollectionView {
                     
                     let teamsDetailsView: TeamDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "TeamView") as! TeamDetailsViewController
                           selectedTeam = presenter?.Teams[indexPath.row]
@@ -97,6 +101,11 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
                     
                     
                     
+          }
+       }
+        else{
+            noConnectionView.isHidden=false
+
         }
                  
           
@@ -129,6 +138,12 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
     override func viewDidLoad() {
         super.viewDidLoad()
         noConnectionView.isHidden=true
+
+     let appDeleate:AppDelegate = (UIApplication.shared.delegate as!AppDelegate)
+     
+     let mangedConetxt:NSManagedObjectContext = appDeleate.persistentContainer.viewContext
+         coredata = CoreDataService(mangedConetxt: mangedConetxt)
+              
         self.LeagueName.text=league?.name
         presenter = LeagueDetaislPresenter(handler: Network.getInstance(), league: league!)
         presenter?.attachView(view: self)
@@ -147,6 +162,20 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
         presenter?.getResults()
         
 
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if (presenter?.isReachable())! {
+            noConnectionView.isHidden=true
+            reloadTeams()
+            reloadEvents()
+            ReloadResuts()
+            
+               }
+        else{
+            noConnectionView.isHidden=false
+               }
+       
     }
     
 
@@ -167,7 +196,7 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
     
 
     @IBAction func addLeagueToFavorites(_ sender: Any) {
-        //// add to favorite here
+        coredata?.insert(league: league!)
         
     }
     @IBOutlet weak var LeagueName: UILabel!
