@@ -888,7 +888,7 @@
                                                 <color key="titleColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                             </state>
                                             <connections>
-                                                <action selector="WatchAction:" destination="jG6-sA-esK" eventType="touchUpInside" id="IBX-od-P2I"/>
+                                                <action selector="WatchAction:" destination="jG6-sA-esK" eventType="touchUpInside" id="V5c-gK-pNi"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIy-g9-9ig">

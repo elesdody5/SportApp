@@ -31,8 +31,9 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
         tableView.reloadData()
     }
     func showEmptyState(){
-       // self.tableView.isHidden = true
-        NoConnectionView.isHidden = true
+        //self.tableView.isHidden = true
+        NoFavoriteLeaguesView.isHidden = false
+
     }
     // MARK: - Table view data source
 
@@ -54,7 +55,6 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
         cell.leageImage.kf.setImage(with: url)
         cell.leagueName.text = league.name
         cell.youTubeLink = league.youTubeUrl
-        print(league.youTubeUrl)
         return cell
     }
  
@@ -110,8 +110,9 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
     
     
     func displayList(leagues: Array<League>) {
-      //  self.tableView.isHidden = false
-        NoConnectionView.isHidden = true
+        //self.tableView.isHidden = false
+        NoFavoriteLeaguesView.isHidden = true
+
         self.leagues = leagues
         tableView.reloadData()
     }

@@ -51,7 +51,7 @@ func insert(league:League)->Bool{
     leagueEntity.setValue(league.name, forKey: "name")
     leagueEntity.setValue(league.sport, forKey: "sport")
     leagueEntity.setValue(league.leagueAlternate, forKey: "leagueAlternate")
-    leagueEntity.setValue(league.youTubeUrl.replacingOccurrences(of:"/user\\/", with: " "), forKey: "youTubeUrl")
+    leagueEntity.setValue(league.youTubeUrl, forKey: "youTubeUrl")
     leagueEntity.setValue(league.logoUrl, forKey: "logoUrl")
 
 

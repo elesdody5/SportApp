@@ -93,14 +93,19 @@ class LeagueDetailsViewController: UIViewController,LeagueDetailsViewProtocol,UI
            
         if (presenter?.isReachable())!{if collectionView == teamsCollectionView {
                     
-                    let TeamsDetailsView: TeamDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "TeamView") as! TeamDetailsViewController
+                    let teamsDetailsView: TeamDetailsViewController = storyboard?.instantiateViewController(withIdentifier: "TeamView") as! TeamDetailsViewController
                           selectedTeam = presenter?.Teams[indexPath.row]
-                   TeamsDetailsView.id = selectedTeam?.id
-                    navigationController?.pushViewController(TeamsDetailsView, animated: true)
+                   teamsDetailsView.id = selectedTeam?.id
+                    navigationController?.pushViewController(teamsDetailsView, animated: true)
+                         
+                    
+                    
+                    
           }
        }
         else{
             noConnectionView.isHidden=false
+
         }
                  
           
