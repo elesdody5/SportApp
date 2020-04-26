@@ -72,9 +72,10 @@ class FavouriteViewController: UITableViewController,FavouriteViewProtocol {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            presenter?.deleteLeague(id: leagues[indexPath.row].id)
             
+            presenter?.deleteLeague(id: leagues[indexPath.row].id)
+            leagues.remove(at: indexPath.row)
+            tableView.reloadData()
         }
     }
     

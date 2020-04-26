@@ -32,7 +32,7 @@ init(mangedConetxt:NSManagedObjectContext) {
     }
     func fetchLeagueWithId(id:Int)->NSManagedObject{
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "LeagueEntity")
-        let predicate = NSPredicate(format: "id == %@", id)
+        let predicate = NSPredicate(format: "id == %@", String(id))
         fetchRequest.predicate = predicate
         
         do{
